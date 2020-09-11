@@ -107,6 +107,16 @@ end
 
 
 # - the total amount of money each driver has made
+puts "Total ammount of money each driver has made."
+
+
+drivers.each do |driver|
+  ride_cost = driver[:trips].sum{ |trip| trip[:cost] }
+  puts "#{driver[:id]} has made $#{ride_cost}."
+end
+
+
+
 
 # - the average rating for each driver
 # - Which driver made the most money?
