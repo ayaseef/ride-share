@@ -1,14 +1,30 @@
+# frozen_string_literal: true
+
 ########################################################
 # Step 1: Establish the layers
 
 # In this section of the file, as a series of comments,
 # create a list of the layers you identify.
+# Layer 1: Drivers
+# Layer 2: Trips
+# Layer 3: Trip details
+
 # Which layers are nested in each other?
+# Layer 3 (Trip details) is nested inside layer 2 (Trips), which is nested
+# inside layer 1 (Drivers).
+
 # Which layers of data "have" within it a different layer?
+# Layer 1 (Drivers) and Layer 2 (Trips)
+
 # Which layers are "next" to each other?
+# Layer 3 has the date representing each trip details, which are resulting
+# to be placed next to each other.
 
 ########################################################
 # Step 2: Assign a data structure to each layer
+# Layer 1: Drivers => Array of Hashes
+# Layer 2: Trips => Array
+# Layer 3: Trip details => Hash
 
 # Copy your list from above, and in this section
 # determine what data structure each layer should have
@@ -23,12 +39,75 @@
 # into this data structure, such as "DR0004"
 # and "3rd Feb 2016" and "RD0022"
 
+
+
+drivers = [
+  {
+    id: 'DR0004',
+    trips: [
+      {
+        date: '3rd Feb 2016',
+        cost: 5,
+        rider_id: 'RD0022',
+        rating: 5
+      },
+      {
+        date: "4th Feb 2016",
+        cost: 10,
+        rider_id: "RD0022",
+        rating: 4
+      },
+      {
+        date: "5th Feb 2016",
+        cost: 20,
+        rider_id: "RD0073",
+        rating: 5
+      }
+    ]
+  },
+  {
+    id: 'DR0001',
+    trips: [
+      {
+        date: "3rd Feb 2016",
+        cost: 10,
+        rider_id: "RD0003",
+        rating: 3
+      },
+      {
+        date: "3rd Feb 2016",
+        cost: 30,
+        rider_id: "RD0015",
+        rating: 4
+      },
+      {
+        date: "5th Feb 2016",
+        cost: 45,
+        rider_id: "RD0003",
+        rating: 2
+      }
+    ]
+  }
+]
+
 ########################################################
 # Step 4: Total Driver's Earnings and Number of Rides
 
 # Use an iteration blocks to print the following answers:
+
 # - the number of rides each driver has given
+puts "Total number of rides each driver has given"
+
+drivers.each do |driver|
+  total_rides = driver[:trips].length
+  puts "#{driver[:id]} has given #{total_rides} rides."
+end
+
+
+
+
 # - the total amount of money each driver has made
+
 # - the average rating for each driver
 # - Which driver made the most money?
 # - Which driver has the highest average rating?
