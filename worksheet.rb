@@ -91,33 +91,63 @@ drivers = [
 ]
 
 ########################################################
+def driver_income(driver)
+  return driver[:trips].sum{ |trip| trip[:cost] }
+end
+
+def driver_average_rating(driver)
+  driver_rating_sum = driver[:trips].sum{ |trip| trip[:rating] }
+  return driver_rating_sum.to_f / driver[:trips].length
+end
 # Step 4: Total Driver's Earnings and Number of Rides
+
 
 # Use an iteration blocks to print the following answers:
 
 # - the number of rides each driver has given
 puts "Total number of rides each driver has given"
 
+puts
 drivers.each do |driver|
   total_rides = driver[:trips].length
   puts "#{driver[:id]} has given #{total_rides} rides."
 end
 
 
-
-
 # - the total amount of money each driver has made
-puts "Total ammount of money each driver has made."
+puts
+puts 'Total amount of money each driver has made.'
 
-
+puts
 drivers.each do |driver|
-  ride_cost = driver[:trips].sum{ |trip| trip[:cost] }
+  ride_cost = driver_income(driver)
   puts "#{driver[:id]} has made $#{ride_cost}."
 end
 
 
+# - the average rating for each driver #
 
+puts
+drivers.each do |driver|
+  driver_rating_average = driver_average_rating(driver)
+  puts "#{driver[:id]}'s average trip rating is #{driver_rating_average.round(1)}."
+end
 
-# - the average rating for each driver
 # - Which driver made the most money?
+puts
+richest_driver = drivers.max_by do |driver|
+  driver_income(driver)
+end
+income_sum = driver_income(richest_driver)
+
+puts "#{richest_driver[:id]} made the most money, their total income is $#{income_sum}."
+
 # - Which driver has the highest average rating?
+puts
+highest_rated_driver = drivers.max_by do |driver|
+  driver_average_rating(driver)
+end
+
+rating_avg = driver_average_rating(highest_rated_driver)
+puts "#{highest_rated_driver[:id]} has the highest rating of #{rating_avg.round(1)}."
+
