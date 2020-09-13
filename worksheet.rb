@@ -87,6 +87,52 @@ drivers = [
         rating: 2
       }
     ]
+  },
+  {
+    id: 'DR0002',
+    trips: [
+      {
+        date: "3rd Feb 2016",
+        cost: 25,
+        rider_id: "RD0073",
+        rating: 5
+      },
+      {
+        date: "4th Feb 2016",
+        cost: 15,
+        rider_id: "RD0013",
+        rating: 1
+      },
+      {
+        date: "5th Feb 2016",
+        cost: 45,
+        rider_id: "RD0003",
+        rating: 2
+      }
+    ]
+  },
+  {
+    id: 'DR0003',
+    trips: [
+      {
+        date: "4th Feb 2016",
+        cost: 5,
+        rider_id: "RD0066",
+        rating: 5
+      },
+      {
+        date: "5th Feb 2016",
+        cost: 50,
+        rider_id: "RD0003",
+        rating: 2
+      },
+      {
+        date: "5th Feb 2016",
+        cost: 35,
+        rider_id: "RD0066",
+        rating: 6
+      }
+    ]
   }
 ]
 
@@ -105,9 +151,9 @@ end
 # Use an iteration blocks to print the following answers:
 
 # - the number of rides each driver has given
-puts "Total number of rides each driver has given"
+puts "Total number of rides each driver has given:"
 
-puts
+
 drivers.each do |driver|
   total_rides = driver[:trips].length
   puts "#{driver[:id]} has given #{total_rides} rides."
@@ -116,9 +162,8 @@ end
 
 # - the total amount of money each driver has made
 puts
-puts 'Total amount of money each driver has made.'
+puts 'Total amount of money each driver has made:'
 
-puts
 drivers.each do |driver|
   ride_cost = driver_income(driver)
   puts "#{driver[:id]} has made $#{ride_cost}."
