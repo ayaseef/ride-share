@@ -39,8 +39,6 @@
 # into this data structure, such as "DR0004"
 # and "3rd Feb 2016" and "RD0022"
 
-
-
 drivers = [
   {
     id: 'DR0004',
@@ -137,6 +135,10 @@ drivers = [
 ]
 
 ########################################################
+def total_rides(driver)
+  return driver[:trips].length
+end
+
 def driver_income(driver)
   return driver[:trips].sum{ |trip| trip[:cost] }
 end
@@ -153,12 +155,9 @@ end
 # - the number of rides each driver has given
 puts "Total number of rides each driver has given:"
 
-
 drivers.each do |driver|
-  total_rides = driver[:trips].length
-  puts "#{driver[:id]} has given #{total_rides} rides."
+  puts "#{driver[:id]} has given #{total_rides(driver)} rides."
 end
-
 
 # - the total amount of money each driver has made
 puts
